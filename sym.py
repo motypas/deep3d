@@ -108,7 +108,7 @@ def make_l1_sym(scale, fuse='sum', data_frames=1, flow_frames=1, get_softmax=Fal
     if method == 'direct':
         depthdot = data
     else:
-        softmax = mx.symbol.SoftmaxActivation(data=data, type='channel', name='softmax')
+        softmax = mx.symbol.SoftmaxActivation(data=data, mode='channel', name='softmax')
         depthdot = mx.symbol.DepthDot(data=softmax, label=left0, scale=scale, upsample=upsample, name='depth')
         
     loss = mx.symbol.MAERegressionOutput(data=depthdot, name='l1')
